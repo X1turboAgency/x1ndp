@@ -1,13 +1,13 @@
 # x1ndp
 
-PSG音源の表現力をアップするMSX用サウンドエンジン NDPがリリースされました。
-X1/turboはMSXと同じ AY-3-8910を搭載しており、実行できれば楽しそうです。
-そこで、NDPプロジェクトのMSXクライアントを改変し、シャープX1/turbo用の簡易プレイヤーアプリケーションを制作してみました。
+PSG音源の表現力をアップするMSX用サウンドエンジン NDPがリリースされました。  
+X1/turboはMSXと同じ AY-3-8910を搭載しており、実行できれば楽しそうです。  
+そこで、NDPプロジェクトのMSXクライアントを改変し、シャープX1/turbo用の簡易プレイヤーアプリケーションを制作してみました。  
 
-The NDP sound engine for MSX, designed to enhance the expressive capabilities of the PSG chip, has been released.
-Since the Sharp X1 and X1 turbo series also feature the AY-3-8910 sound chip—just like the MSX—it seemed like a fun challenge to try running it on those machines as well.
-So, we created a simple player application to play NDP files on the X1/turbo.
-A modified version of the NDP MSX client, repurposed as a lightweight player application for the Sharp X1/turbo.  
+The NDP sound engine for MSX, designed to enhance the expressive capabilities of the PSG chip, has been released.  
+Since the Sharp X1 and X1 turbo series also feature the AY-3-8910 sound chip—just like the MSX—it seemed like a fun challenge to try running it on those machines as well.  
+So, we created a simple player application to play NDP files on the X1/turbo.  
+A modified version of the NDP MSX client, repurposed as a lightweight player application for the Sharp X1/turbo.    
 
 ---
 
