@@ -68,7 +68,9 @@ memory map.
 - Transfer the executable file and your .ndp files to the X1 LSX-Dodgers environment.
 - Run the following command from the command line:
 
+```
  x1ndp [NDPファイル名/NDP file]
+```
 
 - NDPファイルを読込んで再生を開始します。
 - 曲が終わったら終了するようにしていますが、statusが停止状態にならないので原因を調べてみます。
