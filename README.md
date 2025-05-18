@@ -65,8 +65,8 @@ memory map.
 ## 使い方 / Usage
 - X1用 LSX-Dodgers環境に実行ファイルと、ndpファイルを転送してください。
 - コマンドラインから以下の形式で実行してください。
-- Run the following command from the command line:
 - Transfer the executable file and your .ndp files to the X1 LSX-Dodgers environment.
+- Run the following command from the command line:
 
  x1ndp [NDPファイル名/NDP file]
 
