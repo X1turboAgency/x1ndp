@@ -1,7 +1,7 @@
 # x1ndp
 
-A modified version of the NDP MSX client, repurposed as a lightweight player application for the Sharp X1/turbo.
-NDPプロジェクトのMSXクライアントを改変し、シャープX1/turbo用の簡易プレイヤーアプリケーションを制作しています。
+A modified version of the NDP MSX client, repurposed as a lightweight player application for the Sharp X1/turbo.  
+NDPプロジェクトのMSXクライアントを改変し、シャープX1/turbo用の簡易プレイヤーアプリケーションを制作しています。  
 
 ---
 
@@ -38,16 +38,15 @@ NDPプロジェクトのMSXクライアントを改変し、シャープX1/turbo
 
 ## Folder Structure / フォルダ構成
 
-プロジェクトは以下のフォルダ構成になっています。
-
-x1ndp/
-├── app/              # X1 NDP app file
-│   ├── src/         # ソースコード（asm） / src file.
-│   ├── x1ndp.com    # アセンブル済みの実行ファイル / exec file. (for LSX-Dodgers)
-│   └── make.bat     # .com作成用の batファイル / bat file for make.
-├── LICENSE           # ライセンスフォルダ（MIT） / LICENSE file.
-└── README.md         # このファイル / this file.
-
+プロジェクトは以下のフォルダ構成になっています。  
+  
+x1ndp/  
+├── app/              # X1 NDP app file  
+│   ├── src/         # ソースコード（asm） / src file.  
+│   ├── x1ndp.com    # アセンブル済みの実行ファイル / exec file. (for LSX-Dodgers)  
+│   └── make.bat     # .com作成用の batファイル / bat file for make.  
+├── LICENSE           # ライセンスフォルダ（MIT） / LICENSE file.  
+└── README.md         # このファイル / this file.  
 
 - 
 
