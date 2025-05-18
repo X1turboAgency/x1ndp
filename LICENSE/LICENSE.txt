@@ -1,0 +1,51 @@
+MIT License  
+MITライセンス
+
+Copyright (c) 2025 X1turboAgency
+著作権 (c) 2025 X1turboAgency
+
+Permission is hereby granted, free of charge, to any person obtaining a copy  
+of this software and associated documentation files (the "Software"), to deal  
+in the Software without restriction, including without limitation the rights  
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell  
+copies of the Software, and to permit persons to whom the Software is  
+furnished to do so, subject to the following conditions:  
+本ソフトウェアおよび関連文書ファイル（以下「ソフトウェア」）の複製を取得するすべての人に対し、  
+制限なく使用、複製、改変、結合、公開、配布、サブライセンス、および/または販売する権利、  
+および提供された相手に同様の行為を許可する権利を、無償で許可します。  
+ただし、以下の条件に従うものとします。
+
+The above copyright notice and this permission notice shall be included in all  
+copies or substantial portions of the Software.  
+上記の著作権表示および本許諾表示は、  
+ソフトウェアのすべての複製または重要な部分に記載するものとします。
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR  
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,  
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE  
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER  
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,  
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  
+SOFTWARE.  
+
+本ソフトウェアは「現状のまま」提供されており、  
+商品性、特定目的への適合性、および非侵害についての黙示的保証を含め、  
+明示または黙示を問わず、いかなる保証も行いません。  
+著作権者または権利者は、本ソフトウェアまたはその使用またはその他の取引に起因または関連して発生した、  
+いかなる請求、損害、またはその他の責任についても責任を負いません。  
+これは契約行為、不法行為、その他の法理に基づくか否かを問いません。
+
+Additional Terms:  
+追加条項：
+
+- You may freely modify the source, including changing memory addresses or removing features.  
+  メモリアドレスの変更や機能の削除など、ソースコードの改変は自由に行って構いません。
+
+- Credit is not required, but impersonating the original author is prohibited.  
+  クレジット表記は必須ではありませんが、元の著作者を装う行為は禁止です。
+
+- This project is based on the NDP project (MIT License).
+
+- Original copyright:
+  Copyright (c) 2025   NDP (PSG Driver for MSX) / #MSXNDP  Programmed by naruto2413
+
