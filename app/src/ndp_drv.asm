@@ -5,13 +5,6 @@
 ;（NDP.ASM と NDP_WRK.ASM が別途必要）
 ;=====================================
 
-;------	KSS用にフックを無効化して再生
-
-KSSPLY:
-	LD	A,0C9H
-	LD	(OLDTH),A
-	JP	MSTART
-
 ;------	曲データのアドレス設定
 
 ;USR関数用 (HL<-曲データをアドレスを格納しているメモリのアドレス-2)
@@ -19,6 +12,7 @@ KSSPLY:
 U_ADR:
 	INC	HL
 	INC	HL
+U_ADR_X1:
 	LD	E,(HL)
 	INC	HL
 	LD	D,(HL)
@@ -36,6 +30,7 @@ ADRSET:
 U_MV:
 	INC	HL
 	INC	HL
+U_MV_X1:
 	LD	A,(HL)
 
 ;直接コール用 (A<-マスター音量)
@@ -51,6 +46,7 @@ MVSET:
 U_MFO:
 	INC	HL
 	INC	HL
+U_MFO_X1:
 	LD	A,(HL)
 
 ;直接コール用 (A<-フェードのフレーム数)
@@ -70,6 +66,7 @@ MFOSET:
 U_MFI:
 	INC	HL
 	INC	HL
+U_MFI_X1:
 	LD	A,(HL)
 
 ;直接コール用 (A<-フェードのフレーム数)
@@ -93,16 +90,19 @@ MPLAYF:
 U_OFF1:
 	INC	HL
 	INC	HL
+U_OFF1_X1:
 	LD	D,(HL)
 	JR	CH1OFF
 U_OFF2:
 	INC	HL
 	INC	HL
+U_OFF2_X1:
 	LD	D,(HL)
 	JR	CH2OFF
 U_OFF3:
 	INC	HL
 	INC	HL
+U_OFF3_X1:
 	LD	D,(HL)
 	JR	CH3OFF
 
@@ -186,12 +186,14 @@ NDPOFF:
 	OR	A
 	RET	Z
 
+IF 0
 	DI
 
 	LD	HL,OLDTH
 	LD	DE,HTIMI
 	LD	BC,5
 	LDIR
+ENDIF
 
 	XOR	A
 	LD	(HKFLG),A
@@ -397,7 +399,7 @@ RDLOOP:
 ;------	バージョン取得
 
 SYSVER:
-	LD	HL,0101H	;v1.01
+	LD	HL,0103H	;v1.03
 
 	;上位バイトがメジャーバージョン、下位バイトがマイナーバージョン
 	;上位バイトが0なら0.9として扱い、下位バイトはビルドバージョンとする
@@ -412,6 +414,7 @@ SYSVER:
 U_SE:
 	INC	HL
 	INC	HL
+U_SE_X1:
 	LD	E,(HL)
 	INC	HL
 	LD	D,(HL)
@@ -479,6 +482,7 @@ ENDIF
 ;------	タイマ割り込みルーチン
 
 INTRPT:
+	DI
 	CALL	IMAIN
 
 IF 0
@@ -489,8 +493,6 @@ ENDIF
 	RET
 
 IMAIN:
-	DI
-
 	PUSH	AF
 	PUSH	BC
 	PUSH	DE

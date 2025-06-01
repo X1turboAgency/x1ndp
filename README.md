@@ -47,12 +47,18 @@ A modified version of the NDP MSX client, repurposed as a lightweight player app
 プロジェクトは以下のフォルダ構成になっています。  
 ```  
 x1ndp/  
-├── app/              # X1 NDP app file  
-│   ├── src/         # ソースコード（asm） / src file.  
-│   ├── x1ndp.com    # アセンブル済みの実行ファイル / exec file. (for LSX-Dodgers)  
-│   └── make.bat     # .com作成用の batファイル / bat file for make.  
-├── LICENSE           # ライセンスフォルダ（MIT） / LICENSE file.  
-└── README.md         # このファイル / this file.  
+├── app/                      # X1 NDP app file  
+│   ├── src/                 # ソースコード（asm） / src file.  
+│   ├── x1ndp.com            # アセンブル済みの実行ファイル / exec file. (for LSX-Dodgers)  
+│   ├── x1ndp.bin            # アセンブル済みの実行ファイル / exec file. (for CZ-8FB01/02)  
+│   ├── make_x1_basic.bat    # .bin作成用の batふぃある / bat file for BASIC make.
+│   └── make.bat             # .com作成用の batファイル / bat file for make.  
+├── sample/                   # サンプルデータ
+│   ├── kira_kira_smp.mml    # サンプルデータMML (キラキラ星)
+│   ├── kirakira.ndp         # サンプルデータ NDP
+│   └── x1ndp_sample_2d.d88  # CZ-8FB01/CZ-8FB02で使用する呼び出しサンプル用.d88ファイル
+├── LICENSE                   # ライセンスフォルダ（MIT） / LICENSE file.  
+└── README.md                 # このファイル / this file.  
 ```
 
 ## 実行時のメモリマップ
@@ -60,10 +66,19 @@ x1ndp/
 実行時のメモリマップです。
 memory map.
 
+#### LSX-Dodgers時
+
 - 0100h ～ X1 NDPアプリケーション本体
 - 4000h ～ NDPデータ
 
+#### BASIC時 (x1ndp.bin)
+- c000h ～ X1 NDPライブラリ本体
+- e000h ～ NDPデータ(サンプル)、メインメモリ中であれば任意の場所で大丈夫です。
+
 ## 使い方 / Usage
+
+#### LSX-Dodgers時
+
 - X1用 LSX-Dodgers環境に実行ファイルと、ndpファイルを転送してください。
 - コマンドラインから以下の形式で実行してください。
 - Transfer the executable file and your .ndp files to the X1 LSX-Dodgers environment.
@@ -79,6 +94,55 @@ memory map.
 - The player will load the specified NDP file and begin playback.
 - The program is designed to exit after the song ends, but due to a current issue, the status flag may not correctly indicate a stop state. We are investigating this behavior.
 - Pressing any key during playback will force the program to exit.
+
+#### BASIC時
+- 最初に、BASICからの呼び出しクライアント(x1ndp.bin)を0c000hに読込んでください。
+- defusrまたは callで呼出しを行います。
+- BASICの実行とは別に非同期に再生を行います。
+- ディスクアクセスを行うと割込みが実行されず、再生が正常に行われません。
+
+```
+20 sysadr=&HC000:CLEAR sysadr
+30 mdpini=sysadr+0*3  ' setup NDP driver
+40 mstart=sysadr+1*3  ' start driver
+50 mstop=sysadr+2*3  ' stop driver
+60 ndpoff=sysadr+25*3 ' finalize driver
+70 DEF USR0=sysadr+4*3  'set BGM adrs data.
+80 DEF USR1=sysadr+5*3  'mute ch1
+90 DEF USR2=sysadr+6*3  'mute ch2
+100 DEF USR3=sysadr+7*3  'mute ch3
+110 DEF USR4=sysadr+8*3  'set master volume.
+120 DEF USR5=sysadr+9*3  'set fadeout
+130 DEF USR6=sysadr+10*3 'set fadein
+140 '
+150 LOADM "x1ndp.bin",sysadr
+160 snddata=&HE000
+170 LOADM "kirakira.ndp",snddata
+180 CALL mdpini
+190 snd0=snddata+7
+200 x=USR0(snd0)
+210 CALL mstart
+```
+
+mdpini を呼び出した時にCTCの設定を行います。
+X1turboであれば 1fa0h, FM音源ボードがあれば 0704hを使用します。
+CTCが搭載されていないX1では再生できません。
+割込みベクタは 088hを使用していて割込みテーブルとしては、08ehを使用します。
+この場所はCZ-8FB02,CZ-8FB01で使っていても動いていますが、未使用ワークではないと思うので
+今後も対応が必要です。
+
+終了処理は以下を行います。ndpoffを呼び出すとCTCをリセットします。
+
+```
+320 ' Finalize NDP
+330 CALL mstop
+340 CALL ndpoff
+```
+
+##### サンプルデータ
+同梱のsampleディレクトリにMML,NDP,BASICのサンプルを入れておきました。
+データは「試験に出るX1」からの伝統で「キラキラ星」です。
+
 
 ## プロジェクトソース / Project Source
 - make.bat を実行するとソースをアセンブルして実行ファイルを作成します。
