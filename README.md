@@ -51,7 +51,7 @@ x1ndp/
 │   ├── src/                 # ソースコード（asm） / src file.  
 │   ├── x1ndp.com            # アセンブル済みの実行ファイル / exec file. (for LSX-Dodgers)  
 │   ├── x1ndp.bin            # アセンブル済みの実行ファイル / exec file. (for CZ-8FB01/02)  
-│   ├── make_x1_basic.bat    # .bin作成用の batふぃある / bat file for BASIC make.
+│   ├── make_x1_basic.bat    # .bin作成用の batファイル / bat file for BASIC make.
 │   └── make.bat             # .com作成用の batファイル / bat file for make.  
 ├── sample/                   # サンプルデータ
 │   ├── kira_kira_smp.mml    # サンプルデータMML (キラキラ星)
