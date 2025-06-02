@@ -73,7 +73,7 @@ print_system:
 	jp		SYSTEM
 
 str_title:
-	db		"** X1/turbo NDP player (v13.103) **",0dh,0ah
+	db		"** X1/turbo NDP player (v14.103) **",0dh,0ah
 	db		" usage: Press any key to quit.",0dh,0ah
 	db		0dh,0ah, '$' 
 
@@ -182,18 +182,28 @@ ctc_adrs_work:
 setup_int:
 	di
 
-	; f888から割り込みテーブルとして扱う。(CZ-8FB02)
-	; 0088から割り込みテーブルとして扱う。(CZ-8FB01)
+	; f81eから割り込みテーブルとして扱う。(CZ-8FB02)
+	; 0068から割り込みテーブルとして扱う。(CZ-8FB01 v1.0)
 
 	ld		de,intrpt_x1
 
+	; IregでBASIC種類を判別する。
 	ld		a,i
 	ld		h,a
-	ld		l, INT_VECTOR_CTC + 06h
 
+	ld		l, INT_VECTOR1_CTC + 06h	; CZ-8FB01の場合
+	or		a
+	jr		z,se_in_1
+;
+	ld		l, INT_VECTOR2_CTC + 06h	; CZ-8FB02の場合
+se_in_1:
 	ld		(hl),e
 	inc		l
 	ld		(hl),d
+
+	; 割込みベクトル値を求める。
+	ld		a,l
+	sub		07h
 
 	call	init_ctc_interrupt
 
@@ -297,15 +307,17 @@ init_ctc:
 
 ;---------------------------------------------------------------;
 ; サウンド再生用の割込みをセットアップする。
+;	Areg: 割込みベクトル値 (058h or 018h)
+;
 ; BCreg,DEregのみ破壊
 ;---------------------------------------------------------------;
 init_ctc_interrupt:
 	ld		bc, (ctc_adrs_work)
 
 	; 00011000
-	; ch0: 割込みなし,カウンタモード,割込みベクタ(018h)指定
+	; ch0: 割込みなし,カウンタモード,割込みベクタ指定
 	; bit0=0 時は割り込みベクタを指定する。
-	ld		a, INT_VECTOR_CTC & 0ffh
+;;	ld		a, INT_VECTOR_CTC & 0ffh
 	out		(c),a
 
 	; 00010111

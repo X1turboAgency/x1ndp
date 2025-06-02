@@ -24,7 +24,8 @@ BUFSZ					equ		0400h
 DATA_ADRS				equ		BUFAD + 07h
 
 ; X1/turbo ƒVƒXƒeƒ€
-INT_VECTOR_CTC			equ		00088h	; CZ-8FB01 / CZ-8FB02Žž
+INT_VECTOR1_CTC			equ		00058h	; CZ-8FB01 v1.0 / v2.0
+INT_VECTOR2_CTC			equ		00018h	; CZ-8FB02
 
 CRTC_ADRS				equ		01800h
 PSG_ADRS				equ		01c00h
